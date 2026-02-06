@@ -33,9 +33,9 @@ function init() {
     // FBX Loader – DoughNut
     const loader = new FBXLoader();
     loader.load(
-        "../fbx/DoughNut_FBX.fbx", // polku js-kansiosta fbxiin
+        "../fbx/Cartoon_boy.fbx", // polku js-kansiosta fbxiin
         function(object) {
-            object.scale.set(0.0025, 0.005, 0.005); // SUPER pieni
+            object.scale.set(0.0025, 0.05, 0.05); // SUPER pieni
             object.position.set(0, 0, -1);          // todella lähellä kameraa
             scene.add(object);
             console.log("DoughNut FBX loaded:", object);
