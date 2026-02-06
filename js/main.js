@@ -34,12 +34,11 @@ function init() {
     // FBX Loader – DoughNut
     const fbxLoader = new FBXLoader();
     fbxLoader.load(
-        "../fbx/DoughNut_FBX.fbx", // polku js-kansiosta fbxiin
+        "../fbx/Cartoon_boy.fbx", // polku js-kansiosta fbxiin
         function(object) {
-            object.scale.set(0.005, 0.005, 0.005); // pieni skaala
-            object.position.set(0, 0, -0.2);       // lähellä kameraa
+            object.scale.set(0.01, 0.01, 0.01); // pieni skaala
+            object.position.set(0, 0, -0.5);       // lähellä kameraa
             scene.add(object);
-            console.log("DoughNut FBX loaded:", object);
         },
         function(xhr) {
             console.log((xhr.loaded / xhr.total * 100) + "% loaded");
