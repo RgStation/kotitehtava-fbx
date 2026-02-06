@@ -20,7 +20,7 @@ function init() {
     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.xr.enabled = true; // XR tarvitaan ARButtonille
+    renderer.xr.enabled = true;
     container.appendChild(renderer.domElement);
 
     // Valot
@@ -30,15 +30,15 @@ function init() {
     dirLight.position.set(0, 10, 10);
     scene.add(dirLight);
 
-    // FBX Loader – Cartoon_boy
+    // FBX Loader – DoughNut
     const loader = new FBXLoader();
     loader.load(
-        "./fbx/Cartoon_boy.fbx", // polku js-kansiosta fbxiin
+        "../fbx/DoughNut_FBX.fbx", // polku js-kansiosta fbxiin
         function(object) {
-            object.scale.set(0.01, 0.01, 0.01); // sopiva koko
-            object.position.set(0, 0, -0.5);     // lähellä kameraa
+            object.scale.set(0.0025, 0.0025, 0.0025); // SUPER pieni
+            object.position.set(0, 0, -0.3);          // todella lähellä kameraa
             scene.add(object);
-            console.log("Cartoon_boy FBX loaded:", object);
+            console.log("DoughNut FBX loaded:", object);
         },
         function(xhr) { console.log((xhr.loaded / xhr.total * 100) + "% loaded"); },
         function(error) { console.log("Error loading FBX:", error); }
