@@ -26,6 +26,7 @@ function init() {
     // Valot
     const ambient = new THREE.AmbientLight(0xffffff, 1.5);
     scene.add(ambient);
+
     const dirLight = new THREE.DirectionalLight(0xffffff, 1);
     dirLight.position.set(0, 10, 10);
     scene.add(dirLight);
@@ -55,5 +56,12 @@ function init() {
     // Render loop
     renderer.setAnimationLoop(function() {
         renderer.render(scene, camera);
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
     });
 }
