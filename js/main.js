@@ -1,6 +1,7 @@
 import * as THREE from 'https://unpkg.com/three@0.126.0/build/three.module.js';
 import { ARButton } from 'https://unpkg.com/three@0.126.0/examples/jsm/webxr/ARButton.js';
-import { FBXLoader } from 'https://unpkg.com/three@0.126.0/examples/jsm/loaders/FBXLoader.js';
+import { GLTFLoader } from 'https://unpkg.com/three@0.126.0/examples/jsm/loaders/GLTFLoader.js';
+
 
 let camera, scene, renderer;
 
@@ -30,19 +31,20 @@ function init() {
     dirLight.position.set(0, 10, 10);
     scene.add(dirLight);
 
-    // FBX Loader – DoughNut
-    const loader = new FBXLoader();
+    const loader = new GLTFLoader();
     loader.load(
-        "../fbx/DoughNut_FBX.fbx", // polku js-kansiosta fbxiin
-        function(object) {
-            object.scale.set(0.005, 0.005, 0.005);
-            object.position.set(0, 0, -0.5);
-            scene.add(object);
-            console.log("DoughNut FBX loaded:", object);
-        },
-        function(xhr) { console.log((xhr.loaded / xhr.total * 100) + "% loaded"); },
-        function(error) { console.log("Error loading FBX:", error); }
+      "../fbx/donut.glb", // polku js-kansiosta glb:hen
+      function(gltf) {
+        const object = gltf.scene;
+        object.scale.set(0.005, 0.005, 0.005);  // voit säätää tarvittaessa
+        object.position.set(0, 0, -0.3);        // lähellä kameraa
+        scene.add(object);
+        console.log("DoughNut GLB loaded:", object);
+      },
+      function(xhr) { console.log((xhr.loaded / xhr.total * 100) + "% loaded"); },
+      function(error) { console.log("Error loading GLB:", error); }
     );
+
 
     // ARButton
     const button = ARButton.createButton(renderer);
