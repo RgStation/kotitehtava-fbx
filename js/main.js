@@ -36,7 +36,7 @@ function init() {
         "../fbx/DoughNut_FBX.fbx", // polku js-kansiosta fbxiin
         function(object) {
             object.scale.set(0.005, 0.005, 0.005);
-            object.position.set(0, 0, -1);
+            object.position.set(0, 0, -2);
             scene.add(object);
             console.log("DoughNut FBX loaded:", object);
         },
