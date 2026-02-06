@@ -18,6 +18,7 @@ function init() {
     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true});
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.xr.enabled = true;
     container.appendChild(renderer.domElement);
 
     // 4. Load FBX model - tästä copypaste
