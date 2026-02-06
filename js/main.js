@@ -33,7 +33,7 @@ function init() {
     // FBX Loader – Cartoon_boy
     const loader = new FBXLoader();
     loader.load(
-        "../fbx/Cartoon_boy.fbx", // polku js-kansiosta fbxiin
+        "./fbx/Cartoon_boy.fbx", // polku js-kansiosta fbxiin
         function(object) {
             object.scale.set(0.01, 0.01, 0.01); // sopiva koko
             object.position.set(0, 0, -0.5);     // lähellä kameraa
