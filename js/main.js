@@ -24,7 +24,7 @@ function init() {
     container.appendChild(renderer.domElement);
 
     // Valot
-    const ambient = new THREE.AmbientLight(0xffffff, 1.5);
+    const ambient = new THREE.AmbientLight(0xffffff, 2;
     scene.add(ambient);
 
     const dirLight = new THREE.DirectionalLight(0xffffff, 1);
@@ -37,7 +37,7 @@ function init() {
         "../fbx/DoughNut_FBX.fbx", // polku js-kansiosta fbxiin
         function(object) {
             object.scale.set(0.005, 0.005, 0.005); // pieni skaala
-            object.position.set(0, 0, -0.5);       // lähellä kameraa
+            object.position.set(0, 0, -0.2);       // lähellä kameraa
             scene.add(object);
             console.log("DoughNut FBX loaded:", object);
         },
