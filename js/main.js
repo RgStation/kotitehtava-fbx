@@ -28,7 +28,7 @@ function init() {
         modelURL,
         function (object) {
             object.scale.set(0.005, 0.005, 0.005);
-            object.position.set(0, 0, -5);
+            object.position.set(0, 0, -2);
             scene.add(object);
             console.log("FBX model loaded:", object);
         },
