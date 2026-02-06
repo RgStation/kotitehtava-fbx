@@ -1,3 +1,4 @@
+import * as THREE from 'https://unpkg.com/three@0.126.0/build/three.module.js';
 import { ARButton } from "https://unpkg.com/three@0.126.0/examples/jsm/webxr/ARButton.js";
 import { FBXLoader } from "https://unpkg.com/three@0.126.0/examples/jsm/loaders/FBXLoader.js";
 
@@ -28,8 +29,8 @@ function init() {
     fbxLoader.load(
         modelURL,
         function (object) {
-            object.scale.set(0.005, 0.005, 0.005);
-            object.position.set(0, 0, -2);
+            object.scale.set(0.005, 0.005, 0.05);
+            object.position.set(0, 0, -1);
             scene.add(object);
             console.log("FBX model loaded:", object);
         },
