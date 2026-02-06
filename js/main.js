@@ -35,8 +35,8 @@ function init() {
     loader.load(
         "../fbx/DoughNut_FBX.fbx", // polku js-kansiosta fbxiin
         function(object) {
-            object.scale.set(0.0025, 0.0025, 0.0025); // SUPER pieni
-            object.position.set(0, 0, -2);          // todella lähellä kameraa
+            object.scale.set(0.0025, 0.005, 0.005); // SUPER pieni
+            object.position.set(0, 0, -1);          // todella lähellä kameraa
             scene.add(object);
             console.log("DoughNut FBX loaded:", object);
         },
