@@ -23,11 +23,11 @@ function init() {
     // FBX Loader
     const loader = new FBXLoader();
     loader.load(
-        'fbx/DoughNut_FBX.fbx',  // FBX tiedosto sama kansio/rakenne
+        'fbx/Cartoon_boy.fbx',
         (object) => {
             donut = object;
-            donut.scale.set(0.005, 0.005, 0.005);  // rajusti pienennetty
-            donut.position.set(0, -0.2, -0.5);     // suoraan kameran eteen
+            donut.scale.set(0.005, 0.005, 0.005);
+            donut.position.set(0, -0.2, -0.5);
             scene.add(donut);
             console.log("DONUT FBX loaded");
         },
