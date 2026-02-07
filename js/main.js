@@ -1,16 +1,13 @@
 import * as THREE from 'https://unpkg.com/three@0.126.0/build/three.module.js';
 import { ARButton } from 'https://unpkg.com/three@0.126.0/examples/jsm/webxr/ARButton.js';
-import { GLTFLoader } from 'https://unpkg.com/three@0.126.0/examples/jsm/loaders/GLTFLoader.js';
+import { FBXLoader } from 'https://unpkg.com/three@0.126.0/examples/jsm/loaders/FBXLoader.js';
 
-let scene, camera, renderer;
-let donut = null; // GLB-malli
-let reticle;
+let scene, camera, renderer, donut;
 
 init();
 
 function init() {
     scene = new THREE.Scene();
-
     camera = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.01, 20);
 
     renderer = new THREE.WebGLRenderer({ antialias:true, alpha:true });
@@ -21,45 +18,22 @@ function init() {
 
     scene.add(new THREE.HemisphereLight(0xffffff, 0xbbbbff, 1));
 
-    document.body.appendChild(ARButton.createButton(renderer, { requiredFeatures:['hit-test'] }));
+    document.body.appendChild(ARButton.createButton(renderer));
 
-    // Reticle
-    reticle = new THREE.Mesh(
-        new THREE.RingGeometry(0.1,0.12,32).rotateX(-Math.PI/2),
-        new THREE.MeshBasicMaterial({ color:0x00ff00 })
-    );
-    reticle.visible = false;
-    scene.add(reticle);
-
-    // GLB Loader
-    const loader = new GLTFLoader();
+    // FBX Loader
+    const loader = new FBXLoader();
     loader.load(
-        'fbx/donut.glb',
-        (gltf) => {
-            donut = gltf.scene;
-            donut.scale.set(0.005,0.005,0.005);
-            donut.visible = false; // piilotetaan kunnes sijoitetaan reticlelle
+        'fbx/DoughNut_FBX.fbx',  // FBX tiedosto sama kansio/rakenne
+        (object) => {
+            donut = object;
+            donut.scale.set(0.005, 0.005, 0.005);  // rajusti pienennetty
+            donut.position.set(0, -0.2, -0.5);     // suoraan kameran eteen
             scene.add(donut);
-            console.log("DONUT LOADED");
+            console.log("DONUT FBX loaded");
         },
         undefined,
-        (err) => console.error("GLB error:", err)
+        (err) => console.error("FBX error:", err)
     );
 
-    renderer.setAnimationLoop(render);
-}
-
-function render(timestamp, frame) {
-    if (frame && donut) {
-        const session = renderer.xr.getSession();
-        if (session) {
-            // pakotetaan reticle näkyväksi (hit-test toteutus voi lisätä oikean paikan)
-            reticle.visible = true;
-
-            // sijoitetaan donitsi reticlelle automaattisesti
-            donut.position.setFromMatrixPosition(reticle.matrix);
-            donut.visible = true;
-        }
-    }
-    renderer.render(scene,camera);
+    renderer.setAnimationLoop(() => renderer.render(scene, camera));
 }
