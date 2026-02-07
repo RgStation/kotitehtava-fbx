@@ -36,7 +36,7 @@ function init() {
   // 🔥 GLB DONITSI
   const loader = new GLTFLoader();
   loader.load(
-    "../fbx/donut.glb",
+    "/fbx/donut.glb",
     (gltf) => {
       const donut = gltf.scene;
 
