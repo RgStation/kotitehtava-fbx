@@ -34,23 +34,28 @@ function init() {
   scene.add(dirLight);
 
   // 🔥 GLB DONITSI
-  const loader = new GLTFLoader();
-  loader.load(
-    "/fbx/donut.glb",
-    (gltf) => {
-      const donut = gltf.scene;
+ const loader = new GLTFLoader();
+loader.load(
+  "fbx/donut.glb",
+  (gltf) => {
+    const donut = gltf.scene;
 
-      donut.scale.set(0.005, 0.005, 0.005); // juuri sopiva AR:ään
-      donut.position.set(0, -0.2, -0.3);       // suoraan kameran eteen
+    donut.scale.set(0.002, 0.002, 0.002);
 
-      scene.add(donut);
-      console.log("DoughNut GLB loaded");
-    },
-    undefined,
-    (error) => {
-      console.error("GLB error:", error);
-    }
-  );
+    // TÄRKEÄ: lisätään kameraan, EI sceneen
+    camera.add(donut);
+    donut.position.set(0, 0, -0.5);
+
+    scene.add(camera);
+
+    console.log("DONUT FORCED TO CAMERA");
+  },
+  undefined,
+  (error) => {
+    console.error("GLB error:", error);
+  }
+);
+
 
   // ARButton
   document.body.appendChild(ARButton.createButton(renderer));
