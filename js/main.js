@@ -41,7 +41,7 @@ function init() {
       const donut = gltf.scene;
 
       donut.scale.set(0.005, 0.005, 0.005); // juuri sopiva AR:ään
-      donut.position.set(0, 0, -0.3);       // suoraan kameran eteen
+      donut.position.set(0, -0.2, -0.3);       // suoraan kameran eteen
 
       scene.add(donut);
       console.log("DoughNut GLB loaded");
