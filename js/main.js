@@ -23,7 +23,7 @@ function init() {
     // FBX Loader
     const loader = new FBXLoader();
     loader.load(
-        'fbx/Cartoon_boy.fbx',
+        'fbx/DoughNut_FBX.fbx',
         (object) => {
             donut = object;
             donut.scale.set(0.005, 0.005, 0.005);
