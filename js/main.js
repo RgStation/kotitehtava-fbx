@@ -22,14 +22,20 @@ function init() {
     document.body.appendChild(ARButton.createButton(renderer, { requiredFeatures: ['hit-test'] }));
 
     // GLB Loader
-    const loader = new GLTFLoader();
     let donut;
-    loader.load(
-        'fbx/donut.glb',
-        (gltf) => { donut = gltf.scene; donut.scale.set(0.005, 0.005, 0.005); },
-        undefined,
-        (err) => console.error(err)
-    );
+    const loader = new GLTFLoader();
+    loader.load('fbx/donut.glb', (gltf) => {
+        donut = gltf.scene;
+        donut.scale.set(0.005, 0.005, 0.005);
+        donut.visible = false; // piilotetaan aluksi
+        scene.add(donut);
+    });
+
+    if (donut && reticle.visible) {
+    donut.position.setFromMatrixPosition(reticle.matrix);
+    donut.visible = true;
+    }
+
 
     // Reticle (paikka mihin asetetaan objekti)
     reticle = new THREE.Mesh(
